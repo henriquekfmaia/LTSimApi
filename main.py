@@ -1,9 +1,9 @@
 from flask import Flask, request, url_for
 from flask_cors import CORS
 import json
-import dbservice as dbservice
+import access_database.dbservice as dbservice
 import classes.struct as s
-import simulator_service as sim
+import logic.simulator_logic as sim
 
 app = Flask(__name__)
 CORS(app)

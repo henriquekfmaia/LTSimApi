@@ -1,4 +1,4 @@
-import sqlite_wrapper
+import access_database.sqlite_wrapper as sqlite_wrapper
 
 query_select =    """
                 SELECT
