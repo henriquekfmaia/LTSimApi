@@ -1,4 +1,4 @@
-import sqlite_wrapper
+import access_database.sqlite_wrapper as sqlite_wrapper
 import classes.struct as s
 import classes.process as process
 import classes.process_type as process_type
@@ -8,7 +8,6 @@ import classes.result as result
 import classes.output_flow as output_flow
 
 database_file = 'ltsim_db.db'
-
 
 
 def get_process_types():

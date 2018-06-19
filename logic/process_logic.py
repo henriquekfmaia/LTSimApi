@@ -38,3 +38,8 @@ def set_process_flows(process, relationships):
         process.inputFlow = fl.add_flows(process.inputFlow, process.input[i].flow)
     return process
     
+def set_outputs(process, relationships):
+    for rel in process.output:
+        relationship_to_update = rl.get_relationship_by_id(relationships, rel.stageId)
+        relationship_to_update.flow = rel.flow
+    return relationships

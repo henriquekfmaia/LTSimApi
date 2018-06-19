@@ -15,6 +15,8 @@ list_list_mock_3 = [ [9, 8], [[1, 1, 2, 1], [2, 2, 3, 1], [3, 0, 1, 1], [4, 3, 0
 ciclor_mock_1 = [[1, 1, 2, 1], [2, 2, 3, 1], [3, 0, 1, 1], [4, 3, 0, 1]]
 ciclor_mock_2 = [[1, 1, 2, 1], [2, 2, 3, 1], [3, 0, 1, 1], [4, 3, 0, 1], [5, 3, 2, 1], [5, 0, 2, 1]]
 
+live_test = [[1, 2, [1, 2, 3]], [9, 8, [7, 7, 7], 6]]
+
 def run_test_mock(mock):
     matlab_input = parser.convert_to_matlab_cells(mock)
     # print(matlab_input)
@@ -31,14 +33,15 @@ def run_test_ciclor_mock(ciclor_mock):
     ret = parser.force_list(matlab_result)
     print(ret)
 
-run_test_mock(int_mock)
-run_test_mock(float_mock)
-run_test_mock(list_mock_1)
-run_test_mock(list_mock_2)
-run_test_mock(list_mock_3)
-run_test_mock(list_list_mock_1)
-run_test_mock(list_list_mock_2)
-run_test_mock(list_list_mock_3)
+# run_test_mock(int_mock)
+# run_test_mock(float_mock)
+# run_test_mock(list_mock_1)
+# run_test_mock(list_mock_2)
+# run_test_mock(list_mock_3)
+# run_test_mock(list_list_mock_1)
+# run_test_mock(list_list_mock_2)
+# run_test_mock(list_list_mock_3)
+run_test_mock(live_test)
 
-run_test_ciclor_mock(ciclor_mock_1)
-run_test_ciclor_mock(ciclor_mock_2)
+# run_test_ciclor_mock(ciclor_mock_1)
+# run_test_ciclor_mock(ciclor_mock_2)

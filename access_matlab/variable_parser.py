@@ -1,6 +1,5 @@
 import matlab.engine
 
-
 def convert_to_matlab_mat(python_variable):
     matlab_array = []
     if(type(python_variable) is list):
@@ -31,12 +30,12 @@ def force_list(matlab_variables):
         return [matlab_variables]
 
 def convert_to_python(matlab_variables):
-    if(type(matlab_ret) is list) or ('mlarray' in str(type(matlab_ret))):
+    if(type(matlab_variables) is list) or ('mlarray' in str(type(matlab_variables))):
         ret = []
-        for item in matlab_ret:
-            ret.append(get_matlab_return(item))
+        for item in matlab_variables:
+            ret.append(convert_to_python(item))
         if(len(ret) == 1):
             ret = ret[0]
         return ret
     else:
-        return matlab_ret
+        return matlab_variables

@@ -1,4 +1,5 @@
-import matlab_handler as mlh
+import access_matlab.matlab_handler as mlh
+import access_matlab.variable_parser as parser
 
 def run_generated_code(parameter_list, script):
     matlab_input = parser.convert_to_matlab_cells(parameter_list)
