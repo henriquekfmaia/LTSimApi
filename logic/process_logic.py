@@ -16,6 +16,8 @@ def sort_proceesses(processes, relationships):
         for process in processes:
             if(has_valid_input(process, known_rel_ids) and get_process_by_id(processes_out, process.stageId) == None):
                 processes_out.append(process)
+                for o in process.output:
+                    known_rel_ids.append(o.stageId)
 
     return processes_out
 

@@ -28,5 +28,4 @@ def get_distribution(distribution_parameter):
 
 def get_model_script(model):
     script = model.scriptHead + model.scriptBody + model.scriptTail
-    script_2 = model.script
     return script

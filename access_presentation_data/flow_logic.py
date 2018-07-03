@@ -10,7 +10,9 @@ def restart_flow(flow):
     flow.massFlow.value = 0
     for i in flow.sizeDistribution.value.array:
         i.value = 0
+    flow.sizeDistribution.value.array[0].value = 100
     return flow
 
-def is_flow_blank(flow):
-    return (flow.waterFlow.value == None or flow.massFlow.value == None or flow.sizeDistribution.value == None)
+def is_flow_known(flow):
+    return(hasattr(flow.waterFlow, 'value') and hasattr(flow.massFlow, 'value') and hasattr(flow.sizeDistribution, 'value'))
+    #return (flow.waterFlow.value == None or flow.massFlow.value == None or flow.sizeDistribution.value == None)

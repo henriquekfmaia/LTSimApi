@@ -9,6 +9,11 @@ def convert_to_matlab_mat(python_variable):
         return python_variable
     elif(type(python_variable) is float):
         return python_variable
+    elif(type(python_variable) is str):
+        try:
+            return float(python_variable)
+        except:
+            return python_variable
     return matlab.double(matlab_array)
 
 def convert_to_matlab_cells(python_variable):
@@ -20,6 +25,11 @@ def convert_to_matlab_cells(python_variable):
         return python_variable
     elif(type(python_variable) is float):
         return python_variable
+    elif(type(python_variable) is str):
+        try:
+            return float(python_variable)
+        except:
+            return python_variable
     return matlab_array
     
 

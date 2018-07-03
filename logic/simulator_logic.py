@@ -9,10 +9,10 @@ def simulate(processes_dict, relationships_dict):
     relationships = rl.get_relationships_from_input(relationships_dict)
     processes = pl.get_processes_from_input(processes_dict, relationships)
     simulation_rounds = [[processes, relationships]]
-    bollean = True
+    boolean = True
     while(True):
         simulation_rounds.append(run_simulation_round(simulation_rounds[-1]))
-        bollean = False
+        boolean = False
     
     return simulation_rounds[-1]
 
@@ -23,7 +23,8 @@ def run_simulation_round(input_array):
 
     for p in processes_in:
         process = pl.set_process_flows(p, relationships)
-        process = simulate_process(process)
+        simulation_result = simulate_process(process)
+        set_simulation_result(process, simulation_result)
         processes_out.append(process)
         relationships = pl.set_outputs(process, relationships)
 
@@ -35,3 +36,9 @@ def simulate_process(process):
     script = ip.get_model_script(process.model)
     ret = mls.run_generated_code(model_input, script)
     return ret
+
+def set_simulation_result(process, simulation_result):
+    flow_results = simulation_result[0]
+    model_results = simulation_result[1]
+    op.set_output_results(process.output, flow_results)
+    op.set_model_results(process.model.results, model_results)
