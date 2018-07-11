@@ -13,10 +13,6 @@ def run_ciclor_relationships(relationships):
     for rel in relationships:
         data = [rel.stageId, rel.sourceId, rel.destinationId, 0]
         ciclor_input.append(data)
-    ciclor_input.append([3, 0, 1, 1])
-    ciclor_input.append([4, 0, 2, 1])
-    ciclor_input.append([5, 3, 0, 1])
-    ciclor_input.append([6, 3, 2, 1])
     result = mls.run_ciclor(ciclor_input)
     return result
 

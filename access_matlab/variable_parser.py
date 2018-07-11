@@ -34,8 +34,11 @@ def convert_to_matlab_cells(python_variable):
     
 
 def force_list(matlab_variables):
-    if(type(matlab_variables) is list):
+    t = type(matlab_variables)
+    if(t is list):
         return matlab_variables
+    elif(t is matlab.double):
+      return []
     else:
         return [matlab_variables]
 

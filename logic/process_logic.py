@@ -12,12 +12,19 @@ def sort_proceesses(processes, relationships):
     processes_out = []
     known_relationships = rl.get_known_relationships(relationships)
     known_rel_ids = [r.stageId for r in known_relationships]
+    l_processes_out = len(processes_out)
+    l_known_rel_ids = len(known_rel_ids)
     while(len(processes_out) < len(processes)):
         for process in processes:
             if(has_valid_input(process, known_rel_ids) and get_process_by_id(processes_out, process.stageId) == None):
                 processes_out.append(process)
                 for o in process.output:
                     known_rel_ids.append(o.stageId)
+        if(len(processes_out) > l_processes_out and len(known_rel_ids) > l_known_rel_ids):
+            l_processes_out = len(processes_out)
+            l_known_rel_ids = len(known_rel_ids)
+        else:
+            raise Exception('Workflow cannot be resolved.')
 
     return processes_out
 
