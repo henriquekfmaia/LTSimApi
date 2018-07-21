@@ -1,8 +1,8 @@
 def add_flows(flowA, flowB):
-    flowA.waterFlow.value += flowB.waterFlow.value
-    flowA.massFlow.value += flowB.massFlow.value
+    flowA.waterFlow.value = float(flowA.waterFlow.value) + float(flowB.waterFlow.value)
+    flowA.massFlow.value = float(flowA.massFlow.value) + float(flowB.massFlow.value)
     for i in range(0, len(flowA.sizeDistribution.value.array)):
-        flowA.sizeDistribution.value.array[i].value += flowB.sizeDistribution.value.array[i].value
+        flowA.sizeDistribution.value.array[i].value = float(flowA.sizeDistribution.value.array[i].value) + float(flowB.sizeDistribution.value.array[i].value)
     return flowA
 
 def restart_flow(flow):

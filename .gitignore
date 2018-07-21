@@ -2,6 +2,9 @@
 *.m
 *.mat
 
+# VS Code Folder
+.vscode/
+
 # Prerequisites
 *.d
 

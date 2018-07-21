@@ -96,5 +96,5 @@ def save_model(m, processId):
     for res in model_to_save.results:
         results_saved.append(result.save_result(s.Struct(**res), model_to_save, conn))
     result.delete_results_not_saved(results_saved, model_to_save, conn)
-    conn.commit();
+    conn.commit()
     conn.close()
