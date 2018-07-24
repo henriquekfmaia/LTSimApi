@@ -2,6 +2,7 @@ from flask import Flask, request, url_for
 from flask_cors import CORS
 import json
 import access_database.dbservice as dbservice
+import access_presentation_data.output_presentation_data as od
 import classes.struct as s
 import logic.simulator_logic as sim
 
@@ -36,9 +37,6 @@ def get_process_by_id(id):
         results = dbservice.get_results_from_model(m.id)
         for res in results:
             m.results.append(res.__dict__)
-        output_flows = dbservice.get_output_flow_from_model(m.id)
-        for flow in output_flows:
-            m.output_flows.append(flow.__dict__)
         process.models.append(m.__dict__)
         
     ret = json.dumps(process.__dict__)
@@ -56,15 +54,13 @@ def post_model():
 def simulate():
     req_data = request.get_json()
     simulation_result = sim.simulate(req_data['processes'], req_data['relationships'])
-    processes = simulation_result[0]
-    relationships = simulation_result[1]
-    pr = []
-    for p in processes:
-        pr.append(p.__dict__)
-    
-        
-    a = json.dumps(pr)
-    return a
+    processes = od.process_array_to_serializable(simulation_result[0])
+    relationships = od.relationship_array_to_serializable(simulation_result[1])
+    ret = {}
+    ret['processes'] = processes
+    ret['relationships'] = relationships
+    j = json.dumps(ret)
+    return j
 
 
 app.run(debug=False, threaded=True)

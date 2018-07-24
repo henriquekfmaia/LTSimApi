@@ -32,20 +32,6 @@ query_update =  """
 
                 """
 
-
-def get_output_flow_from_model(model_id, conn):
-    output_flows = []
-    query_where =   """
-                    WHERE
-                        ModelId =?
-                    """
-    query = query_select + query_where
-    param = [model_id]
-    rows = sqlite_wrapper.run_query(conn, query, param)
-    for row in rows:
-        output_flows.append(OutputFlow(row))
-    return output_flows
-
 def save_output_flow(output_flow, model, conn):
     if('id' in output_flow.__dict__ and output_flow.id > 0):
         return update_output_flow(output_flow, model, conn)

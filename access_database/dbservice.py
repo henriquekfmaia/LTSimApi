@@ -75,13 +75,6 @@ def get_results_from_model(model_id):
     conn.close()
     return ret
 
-def get_output_flow_from_model(model_id):
-    # create a database connection
-    conn = sqlite_wrapper.create_connection(database_file)
-    ret = output_flow.get_output_flow_from_model(model_id, conn)
-    conn.close()
-    return ret
-
 def save_model(m, processId):
     # create a database connection
     conn = sqlite_wrapper.create_connection(database_file)
