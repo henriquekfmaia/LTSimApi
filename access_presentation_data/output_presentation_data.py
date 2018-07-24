@@ -15,11 +15,25 @@ def set_array_to_distribution(distribution, array):
     return distribution
 
 def set_output_results(process_output, simulation_result):
-    new_output = []
     for i in range(0, len(process_output)):
-        flow = process_output[i]
+        flow = process_output[i].flow
         flow.waterFlow.value = simulation_result[i][0]
         flow.massFlow.value = simulation_result[i][1]
         flow.sizeDistribution.value = set_array_to_distribution(flow.sizeDistribution.value, simulation_result[i][2])
-        new_output.append(flow)
-    return new_output
+    return process_output
+
+
+def process_to_serializable(process):
+    pass
+
+def model_to_serializable(model):
+    pass
+
+def relationship_to_serializable(relationship):
+    pass
+
+def flow_to_serializable(flow):
+    pass
+
+def distribution_to_serializable(distribtion):
+    pass

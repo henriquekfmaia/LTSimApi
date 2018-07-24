@@ -4,6 +4,9 @@
 def get_model_input(process):
     input_flow = get_flow(process.inputFlow)
     process_parameters = get_parameters(process.model.parameters)
+    # Gambiarra SIM porque o matlab não colabora
+    # if(len(process_parameters) == 0):
+    #     process_parameters = [0]
     model_input = [input_flow, process_parameters]
     return model_input
 

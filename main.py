@@ -56,10 +56,15 @@ def post_model():
 def simulate():
     req_data = request.get_json()
     simulation_result = sim.simulate(req_data['processes'], req_data['relationships'])
-    ret = {}
-    ret['processes'] = simulation_result[0]
-    ret['relationships'] = simulation_result[1]
-    return json.dumps(ret)
+    processes = simulation_result[0]
+    relationships = simulation_result[1]
+    pr = []
+    for p in processes:
+        pr.append(p.__dict__)
+    
+        
+    a = json.dumps(pr)
+    return a
 
 
 app.run(debug=False, threaded=True)
