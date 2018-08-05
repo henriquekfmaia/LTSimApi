@@ -1,13 +1,20 @@
-from flask import Flask, request, url_for
+from flask import Flask, request, url_for, jsonify
 from flask_cors import CORS
 import json
 import access_database.dbservice as dbservice
 import access_presentation_data.output_presentation_data as od
 import classes.struct as s
 import logic.simulator_logic as sim
+import classes.ApiError as error
 
 app = Flask(__name__)
 CORS(app)
+
+@app.errorhandler(error.ApiError)
+def handle_api_error(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
 
 @app.route('/', methods=['GET'])
 def hello_world():
@@ -53,12 +60,15 @@ def post_model():
 @app.route('/simulate', methods=['POST'])
 def simulate():
     req_data = request.get_json()
-    simulation_result = sim.simulate(req_data['processes'], req_data['relationships'])
-    processes = od.process_array_to_serializable(simulation_result[0])
-    relationships = od.relationship_array_to_serializable(simulation_result[1])
-    ret = {}
-    ret['processes'] = processes
-    ret['relationships'] = relationships
+    try:
+        simulation_result = sim.simulate(req_data['processes'], req_data['relationships'])
+        processes = od.process_array_to_serializable(simulation_result[0])
+        relationships = od.relationship_array_to_serializable(simulation_result[1])
+        ret = {}
+        ret['processes'] = processes
+        ret['relationships'] = relationships
+    except Exception as ex:
+        raise error.ApiError(ex.args[0], status_code=ex.args[1])
     j = json.dumps(ret)
     return j
 

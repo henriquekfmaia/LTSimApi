@@ -24,7 +24,7 @@ def sort_proceesses(processes, relationships):
             l_processes_out = len(processes_out)
             l_known_rel_ids = len(known_rel_ids)
         else:
-            raise Exception('Workflow cannot be resolved.')
+            raise Exception('Workflow cannot be resolved.', 400)
 
     return processes_out
 
