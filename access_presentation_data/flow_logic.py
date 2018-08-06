@@ -3,9 +3,15 @@ import logic.comparer as co
 
 def add_flows(flowA, flowB):
     flowA.waterFlow.value = float(flowA.waterFlow.value) + float(flowB.waterFlow.value)
-    flowA.massFlow.value = float(flowA.massFlow.value) + float(flowB.massFlow.value)
-    for i in range(0, len(flowA.sizeDistribution.value.array)):
-        flowA.sizeDistribution.value.array[i].value = float(flowA.sizeDistribution.value.array[i].value) + float(flowB.sizeDistribution.value.array[i].value)
+    totalMass = float(flowA.massFlow.value) + float(flowB.massFlow.value)
+    wA = float(flowA.massFlow.value)/totalMass
+    wB = float(flowB.massFlow.value)/totalMass
+    flowA.massFlow.value = totalMass
+    arraySum = 0
+    for i in range(1, len(flowA.sizeDistribution.value.array)):
+        flowA.sizeDistribution.value.array[i].value = wA*float(flowA.sizeDistribution.value.array[i].value) + wB*float(flowB.sizeDistribution.value.array[i].value)
+        arraySum += flowA.sizeDistribution.value.array[i].value
+    flowA.sizeDistribution.value.array[0].value = 100 - arraySum
     return flowA
 
 def restart_flow(flow):
