@@ -73,4 +73,4 @@ def simulate():
     return j
 
 
-app.run(debug=False, threaded=True)
+app.run()

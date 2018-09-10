@@ -3,12 +3,16 @@
 def set_model_results(process_results, simulation_result):
     for i in range(0, len(process_results)):
         if(type(simulation_result[i]) is list):
-            process_results[i].value = set_array_to_distribution(process_results[i].value, simulation_result[i])
+            process_results[i].value = set_array_to_distribution(process_results[i].value, simulation_result[i][0])
         else:
             process_results[i].value = simulation_result[i]
 
 
 def set_array_to_distribution(distribution, array):
+    if(len(distribution.array) > len(array)):
+        # Caso o array não tenha a quantidade no fundo da ultima peneira, calcula esse valor
+        sum_all = sum(s for s in array)
+        array.append(100 - sum_all)
     for i in range(0, len(distribution.array)):
         size = distribution.array[i]
         size.value = array[i]
@@ -19,7 +23,7 @@ def set_output_results(process_output, simulation_result):
         flow = process_output[i].flow
         flow.waterFlow.value = simulation_result[i][0]
         flow.massFlow.value = simulation_result[i][1]
-        flow.sizeDistribution.value = set_array_to_distribution(flow.sizeDistribution.value, simulation_result[i][2])
+        flow.sizeDistribution.value = set_array_to_distribution(flow.sizeDistribution.value, simulation_result[i][2][0])
     return process_output
 
 def process_array_to_serializable(process_array):

@@ -33,9 +33,12 @@ def run_generated_code(matlab_input, script):
     file_name = generate_matlab_script_random_name(script)
     script_name = file_name.replace('.m', '')
     execute_code = 'eng.{0}(matlab_input)'.format(script_name)
-    matlab_result = eval(execute_code)
-    #matlab_result = eng.temp_script(matlab_input)
-    delete_file(file_name)
+    try:
+        matlab_result = eval(execute_code)
+    except Exception as ex:
+        raise Exception("Error on matlab script: {0}".format(ex.args[0]), 400)
+    finally:
+        delete_file(file_name)
     return matlab_result
 
 def run_ciclor(matlab_input):

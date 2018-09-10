@@ -31,9 +31,10 @@ def run_ciclor_service(parameter_list):
     return result
 
 def run_generated_code_local(parameter_list, script):
-    matlab_input = parser.convert_to_matlab_cells(parameter_list)
+    matlab_input = parser.convert_to_matlab(parameter_list)
     matlab_result = mlh.run_generated_code(matlab_input, script)
-    result = parser.force_list(matlab_result)
+    p_result = parser.convert_to_python(matlab_result)
+    result = parser.force_list(p_result)
     return result
 
 def run_ciclor_local(parameter_list):
