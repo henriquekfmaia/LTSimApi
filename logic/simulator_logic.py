@@ -5,18 +5,19 @@ import access_presentation_data.flow_logic as fl
 import logic.relationship_logic as rl
 import logic.process_logic as pl
 import logic.comparer as co
+import copy
 
 def simulate(processes_dict, relationships_dict):
     relationships = rl.get_relationships_from_input(relationships_dict)
     processes = pl.get_processes_from_input(processes_dict, relationships)
     simulation_rounds = [[processes, relationships]]
     error = 10
-    max_error = 1
+    max_error = 0.00000000000000000000000000001
     count = 0
     count_max = 500
     while(error > max_error):
         simulation_rounds.append(run_simulation_round(simulation_rounds[-1]))
-        if(len(simulation_rounds) > 1):
+        if(len(simulation_rounds) > 3):
             error = get_max_error(simulation_rounds[-2], simulation_rounds[-1])
         if(count > count_max):
             raise Exception('Convergence not reached after {0} cicles. Simulation aborted'.format(count_max))
@@ -24,8 +25,9 @@ def simulate(processes_dict, relationships_dict):
     return simulation_rounds[-1]
 
 def run_simulation_round(input_array):
-    processes_in = input_array[0]
-    relationships = input_array[1]
+    input_array_copy = copy.deepcopy(input_array)
+    processes_in = input_array_copy[0]
+    relationships = input_array_copy[1]
     processes_out = []
 
     for p in processes_in:

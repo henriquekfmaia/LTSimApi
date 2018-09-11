@@ -4,6 +4,8 @@ import logic.comparer as co
 def add_flows(flowA, flowB):
     flowA.waterFlow.value = float(flowA.waterFlow.value) + float(flowB.waterFlow.value)
     totalMass = float(flowA.massFlow.value) + float(flowB.massFlow.value)
+    if totalMass == 0:
+        totalMass = 1
     wA = float(flowA.massFlow.value)/totalMass
     wB = float(flowB.massFlow.value)/totalMass
     flowA.massFlow.value = totalMass
