@@ -8,7 +8,7 @@ Para usar o LTMSimApi, é necessário instalar seus requisitos. O serviço roda 
 ## Instalação da API do MATLAB
 Com o Python instalado, abra o Powershell em modo de administrador, vá para o diretório raiz do MATLAB e siga o caminho:
 ...
-...Matlab\extern\engines\python
+Matlab\extern\engines\python
 ...
 
 Essa pasta contém um arquivo setup.py. Com Powershell dentro dessa pasta, digite o comando:
@@ -36,8 +36,7 @@ pip install requests
 
 ## Iniciando o serviço
 * Faça o download do conteúdo desse repositório
-* Abra o arquivo main.py
-* Rode o programa
+* Execute o script "iniciar_servico.ps1"
 
 Com isso, o serviço será exposto na porta 5000. Para que a tela web se conecte a esse serviço, é preciso que essa porta seja exposta para a internet. Durante a apresentação do projeto, usei a aplicação [ngrok](https://ngrok.com/), que por mais que sua versão gratuita seja limitada, a mesma ainda é bem simples. Tendo o endereço web no qual o serviço está exposto, só preciso que me enviem esse endereço para que possa apontar a tela Web para que possa acessa-lo.
 
