@@ -1,0 +1,1 @@
+.\ngrok.exe authtoken 3rtEg5m81eGgy14jfkU1g_3JjseWRqUtMWDULeMFWXE
