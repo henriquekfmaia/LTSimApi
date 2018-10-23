@@ -7,14 +7,13 @@ Para usar o LTMSimApi, é necessário instalar seus requisitos. O serviço roda 
 
 ## Instalação da API do MATLAB
 Com o Python instalado, abra o Powershell em modo de administrador, vá para o diretório raiz do MATLAB e siga o caminho:
-...
+```
 Matlab\extern\engines\python
-...
-
+```
 Essa pasta contém um arquivo setup.py. Com Powershell dentro dessa pasta, digite o comando:
-...
+```
 python setup.py install
-...
+```
 
 Em caso de dúvidas, pode-se consultar a [documentação oficial](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html) do MATLAB.
 
