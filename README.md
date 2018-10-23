@@ -41,3 +41,6 @@ pip install requests
 Com isso, o serviço será exposto na porta 5000. Para que a tela web se conecte a esse serviço, é preciso que essa porta seja exposta para a internet. Durante a apresentação do projeto, usei a aplicação [ngrok](https://ngrok.com/), que por mais que sua versão gratuita seja limitada, a mesma ainda é bem simples. Tendo o endereço web no qual o serviço está exposto, só preciso que me enviem esse endereço para que possa apontar a tela Web para que possa acessa-lo, ou então, podem alterar manualmente a linha 2620 [desse arquivo](https://github.com/henriquekfmaia/henriquekfmaia.github.io/blob/master/main.bundle.js).
 
 Caso ocorra erro por falta de alguma depenência, pode-se instalar a mesma usando o respectivo comando do pip.
+
+## Usando ngrok
+Primeiro deve-se baixar o programa [ngrok](https://ngrok.com/) e descompactar o seu conteúdo na pasta do serviço. Então, deve-se rodar o script incluir_cadastro_ngrok.ps1 para fazer o login (esse script que está aqui faz o cadastro no meu usuário). Esse passo só precisa ser seguido uma vez. Após isso, pode-se executar o script iniciar_ngrok.ps1 para executar o ngrok e expor o serviço para a internet. 
